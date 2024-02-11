@@ -26,6 +26,10 @@ const ProductDetails = () => {
       dispatch(removeSelectedProduct());
     };
   }, [productId]);
+
+  const handleAddToCart = () => {
+    console.log("cart");
+  };
   return (
     <div className="ui grid container">
       {Object.keys(product).length === 0 ? (
@@ -46,10 +50,7 @@ const ProductDetails = () => {
                 <h3 className="ui brown block header">{category}</h3>
                 <p>{description}</p>
                 <div className="ui vertical animated button" tabIndex="0">
-                  <div className="hidden content">
-                    <i className="shop icon"></i>
-                  </div>
-                  <div className="visible content">Add to Cart</div>
+                  <button onClick={handleAddToCart}>Add to Cart</button>
                 </div>
               </div>
             </div>

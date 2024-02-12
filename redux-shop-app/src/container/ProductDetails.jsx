@@ -5,10 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectedProduct,
   removeSelectedProduct,
+  setToCart,
 } from "../redux/actions/productsActions";
 const ProductDetails = () => {
   const { productId } = useParams();
   let product = useSelector((state) => state.product);
+  let cart = useSelector((state) => state.cart.products);
+  console.log("cart", cart.title);
   const { image, title, price, category, description } = product;
   const dispatch = useDispatch();
   const fetchProductDetail = async (id) => {
@@ -28,8 +31,7 @@ const ProductDetails = () => {
   }, [productId]);
 
   const handleAddToCart = () => {
-    console.log("cart");
-    dispatch;
+    dispatch(setToCart(product));
   };
   return (
     <div className="ui grid container">
@@ -51,7 +53,7 @@ const ProductDetails = () => {
                 <h3 className="ui brown block header">{category}</h3>
                 <p>{description}</p>
                 <div className="ui vertical animated button" tabIndex="0">
-                  <button onClick={handleAddToCart}>Add to Cart</button>
+                  <button onClick={handleAddToCart()}>Add to Cart</button>
                 </div>
               </div>
             </div>

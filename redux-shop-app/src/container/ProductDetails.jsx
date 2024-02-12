@@ -29,6 +29,7 @@ const ProductDetails = () => {
 
   const handleAddToCart = () => {
     console.log("cart");
+    dispatch;
   };
   return (
     <div className="ui grid container">

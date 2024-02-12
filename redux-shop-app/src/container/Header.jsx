@@ -1,12 +1,15 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className="ui fixed menu">
       <div className="ui container center">
-        <h2>Redux Shop</h2>
+        <NavLink to="/">
+          <h2>Redux Shop</h2>
+        </NavLink>
       </div>
-      <div>Cart Items</div>
+      <NavLink to="/cartDetails">Cart Items </NavLink>
     </div>
   );
 };

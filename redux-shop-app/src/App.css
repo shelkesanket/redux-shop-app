@@ -91,3 +91,10 @@
   font-size: 18px;
   margin-left: 0;
 }
+
+/* cart */
+.cart{
+  display: flex;
+  flex-direction: column;
+  margin: 20px 40px;
+}

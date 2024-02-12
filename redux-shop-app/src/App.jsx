@@ -4,6 +4,7 @@ import "./App.css";
 import Header from "./container/Header";
 import ProductListing from "./container/ProductListing";
 import ProductDetails from "./container/ProductDetails";
+import CartDetails from "./container/CartDetails";
 
 function App() {
   return (
@@ -12,7 +13,12 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" exact element={<ProductListing />} />
-          <Route path="/product/:productId" element={<ProductDetails />} />
+          <Route
+            path="/product/:productId"
+            exact
+            element={<ProductDetails />}
+          />
+          <Route path="/cartDetails" exact element={<CartDetails />} />
           <Route>404 Not Found!</Route>
         </Routes>
       </Router>

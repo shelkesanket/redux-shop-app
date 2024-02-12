@@ -9,30 +9,37 @@ import {
 } from "../redux/actions/productsActions";
 const ProductDetails = () => {
   const { productId } = useParams();
-  let product = useSelector((state) => state.product);
-  let cart = useSelector((state) => state.cart.products);
-  console.log("cart", cart.title);
-  const { image, title, price, category, description } = product;
+  const product = useSelector((state) => state.product);
   const dispatch = useDispatch();
-  const fetchProductDetail = async (id) => {
-    const response = await axios
-      .get(`https://fakestoreapi.com/products/${id}`)
-      .catch((err) => {
-        console.log("Err: ", err);
-      });
-    dispatch(selectedProduct(response.data));
-  };
 
+  // Fetch product details
   useEffect(() => {
-    if (productId && productId !== "") fetchProductDetail(productId);
+    const fetchProductDetail = async () => {
+      try {
+        const response = await axios.get(
+          `https://fakestoreapi.com/products/${productId}`
+        );
+        dispatch(selectedProduct(response.data));
+      } catch (error) {
+        console.log("Error fetching product details: ", error);
+      }
+    };
+
+    if (productId && productId !== "") {
+      fetchProductDetail();
+    }
+
     return () => {
       dispatch(removeSelectedProduct());
     };
-  }, [productId]);
+  }, [productId, dispatch]);
 
+  // Add product to cart
   const handleAddToCart = () => {
     dispatch(setToCart(product));
+    console.log("product in cart", product);
   };
+
   return (
     <div className="ui grid container">
       {Object.keys(product).length === 0 ? (
@@ -43,17 +50,21 @@ const ProductDetails = () => {
             <div className="ui vertical divider">AND</div>
             <div className="middle aligned row">
               <div className="column lp">
-                <img className="ui fluid image" src={image} />
+                <img
+                  className="ui fluid image"
+                  src={product.image}
+                  alt={product.title}
+                />
               </div>
               <div className="column rp">
-                <h1>{title}</h1>
+                <h1>{product.title}</h1>
                 <h2>
-                  <a className="ui teal tag label">${price}</a>
+                  <a className="ui teal tag label">${product.price}</a>
                 </h2>
-                <h3 className="ui brown block header">{category}</h3>
-                <p>{description}</p>
+                <h3 className="ui brown block header">{product.category}</h3>
+                <p>{product.description}</p>
                 <div className="ui vertical animated button" tabIndex="0">
-                  <button onClick={handleAddToCart()}>Add to Cart</button>
+                  <button onClick={handleAddToCart}>Add to Cart</button>
                 </div>
               </div>
             </div>

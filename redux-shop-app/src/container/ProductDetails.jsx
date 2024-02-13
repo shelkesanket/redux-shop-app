@@ -6,7 +6,9 @@ import {
   selectedProduct,
   removeSelectedProduct,
   setToCart,
+  removeFromCart,
 } from "../redux/actions/productsActions";
+import "./Cart.css";
 const ProductDetails = () => {
   const { productId } = useParams();
   const product = useSelector((state) => state.product);
@@ -40,6 +42,10 @@ const ProductDetails = () => {
     console.log("product in cart", product);
   };
 
+  const handleRemoveCart = () => {
+    dispatch(removeFromCart(product.id)); // Pass the product ID to removeFromCart action creator
+  };
+
   return (
     <div className="ui grid container">
       {Object.keys(product).length === 0 ? (
@@ -63,8 +69,10 @@ const ProductDetails = () => {
                 </h2>
                 <h3 className="ui brown block header">{product.category}</h3>
                 <p>{product.description}</p>
-                <div className="ui vertical animated button" tabIndex="0">
+                <div className="buttons">
                   <button onClick={handleAddToCart}>Add to Cart</button>
+
+                  <button onClick={handleRemoveCart}>Remove Item</button>
                 </div>
               </div>
             </div>

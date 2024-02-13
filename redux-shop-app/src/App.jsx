@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./container/Header";
 import ProductListing from "./container/ProductListing";
 import ProductDetails from "./container/ProductDetails";
 import CartDetails from "./container/CartDetails";
+import Cart from "./container/Cart";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             element={<ProductDetails />}
           />
           <Route path="/cartDetails" exact element={<CartDetails />} />
+          <Route path="/cart" exact element={<Cart />} />
           <Route>404 Not Found!</Route>
         </Routes>
       </Router>
@@ -26,4 +28,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

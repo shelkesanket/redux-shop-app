@@ -1,0 +1,9 @@
+.cart {
+  margin-top: 0px; /* Adjust the margin-top value to create space below the header */
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}

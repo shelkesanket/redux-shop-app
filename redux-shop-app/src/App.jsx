@@ -4,7 +4,6 @@ import "./App.css";
 import Header from "./container/Header";
 import ProductListing from "./container/ProductListing";
 import ProductDetails from "./container/ProductDetails";
-import CartDetails from "./container/CartDetails";
 import Cart from "./container/Cart";
 
 function App() {
@@ -19,7 +18,7 @@ function App() {
             exact
             element={<ProductDetails />}
           />
-          <Route path="/cartDetails" exact element={<CartDetails />} />
+
           <Route path="/cart" exact element={<Cart />} />
           <Route>404 Not Found!</Route>
         </Routes>

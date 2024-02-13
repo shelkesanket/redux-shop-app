@@ -39,7 +39,6 @@ const ProductDetails = () => {
   // Add product to cart
   const handleAddToCart = () => {
     dispatch(setToCart(product));
-    console.log("product in cart", product);
   };
 
   const handleRemoveCart = () => {
